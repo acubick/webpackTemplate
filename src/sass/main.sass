@@ -1,0 +1,67 @@
+@import "vars"
+@import "fonts"
+@import "libs"
+
+::placeholder
+	color: #666
+
+::selection
+	background-color: $accent
+	color: #fff
+
+body
+	font-size: 16px
+	min-width: 320px
+	position: relative
+	line-height: 1.65
+	font-family: $default-font
+	overflow-x: hidden
+	color: $text
+	input, textarea
+		border: #666 1px solid
+		outline: none
+		&:focus:required:invalid
+			border-color: red
+		&:required:valid
+			border-color: green
+	padding-bottom: 100px
+
+.img-responsive
+	display: block
+	max-width: 100%
+	height: auto
+	&.img-width
+		width: 100%
+
+.text-center
+	text-align: center
+
+b, strong
+	font-weight: bold
+$wdth: 58px
+.item-godtest
+	height: 125px
+	width: 100%
+	background-color: #404244
+	color: #00b3ee
+	text-align: center
+	line-height: 125px
+	position: relative
+	border-radius: 10em
+	&::after
+		content: ''
+		position: absolute
+		width: $wdth
+		border-bottom: 5px solid #00b3ee
+		bottom: -7px
+		left: 50%
+		margin-left: -50%
+		transition: all .5s ease
+		cursor: pointer
+	&:hover
+		&::after
+	     border-color: #008dc2
+		
+
+
+@import "media" // Always at the end
