@@ -1,6 +1,6 @@
 // import './styles.scss';
 import './js/common.js';
-import './css/main.css';
+// import './css/main.css';
 import './sass/main.sass';
 import './bootstrap/bootstrap';
 

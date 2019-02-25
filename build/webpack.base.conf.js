@@ -14,199 +14,186 @@ const PATHS = {
 }
 
 module.exports = {
-        externals: {
-            paths: PATHS
-        },
-        mode: 'development',
-        entry: {
-            app: PATHS.src,
-            test: './src/test.js',
-        },
-        output: {
-            filename: `${PATHS.assets}js/[name].js`,
-            path: PATHS.dist,
-            publicPath: '/'
-        },
+    externals: {
+        paths: PATHS
+    },
+    mode: 'development',
+    entry: {
+        app: PATHS.src,
+        test: './src/test.js',
+    },
+    output: {
+        filename: `${PATHS.assets}js/[name].js`,
+        path: PATHS.dist,
+        publicPath: '/'
+    },
 
-        module: {
-            rules: [{
-                    test: /\.(sa|sc)ss$/,
-                    // test: /\.scss$/,
-                    use: [
-                        'style-loader',
-                        MiniCssExtractPlugin.loader,
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                sourceMap: true
-                            }
-                        },
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                sourceMap: true,
-                                config: {
-                                    path: `${PATHS.src}/js/postcss.config.js`
-                                }
-                            }
-                        },
-                        {
-                            loader: 'sass-loader',
-                            options: {
-                                sourceMap: true
+    module: {
+        rules: [{
+                test: /\.(sa|sc)ss$/,
+                use: [
+                    'style-loader',
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: true,
+                            config: {
+                                path: `${PATHS.src}/js/postcss.config.js`
                             }
                         }
-                    ]
-                },
-                {
-                    test: /\.css$/,
-                    // test: /\.scss$/,
-                    use: [
-                        'style-loader',
-                        MiniCssExtractPlugin.loader,
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                sourceMap: true
-                            }
-                        },
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                sourceMap: true,
-                                config: {
-                                    path: `${PATHS.src}/js/postcss.config.js`
-                                }
-                            }
-                        },
-                    ]
-                },
-                {
-                    test: /\.(gif|png|jpe?g|svg)$/i,
-                    use: [{
-                            loader: 'file-loader',
-                            options: {
-                                name: '[name].[ext]',
-                                outputPath: `${PATHS.assets}img`,
-                                useRelativePath: true
-                            }
-                        },
-                        {
-                            loader: 'image-webpack-loader',
-                            options: {
-                                mozjpeg: {
-                                    progressive: true,
-                                    quality: 75
-                                },
-                                // optipng.enabled: false will disable optipng
-                                optipng: {
-                                    enabled: false,
-                                },
-                                pngquant: {
-                                    quality: '65-90',
-                                    speed: 4
-                                },
-                                gifsicle: {
-                                    interlaced: false,
-                                },
-                                // the webp option will enable WEBP
-                                webp: {
-                                    quality: 75
-                                }
-                            }
-                        },
-                    ]
-                },
-                {
-                    test: /\.js$/,
-                    loader: 'babel-loader',
-                    exclude: '/node_modules/',
-                    options: {
-
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true
+                        }
                     }
-                },
-                {
-                    test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-                    use: [{
+                ]
+            },
+            // {
+            //     test: /\.css$/,
+            //     use: [
+            //         'style-loader',
+            //         MiniCssExtractPlugin.loader,
+            //         {
+            //             loader: 'css-loader',
+            //             options: {
+            //                 sourceMap: true
+            //             }
+            //         },
+            //         {
+            //             loader: 'postcss-loader',
+            //             options: {
+            //                 sourceMap: true,
+            //                 config: {
+            //                     path: `${PATHS.src}/js/postcss.config.js`
+            //                 }
+            //             }
+            //         },
+            //     ]
+            // },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                use: [{
                         loader: 'file-loader',
                         options: {
                             name: '[name].[ext]',
-                            outputPath: `${PATHS.assets}fonts`
+                            outputPath: `${PATHS.assets}img`,
+                            useRelativePath: true
                         }
-                    }]
-                },
-                // 	{
-                //     test: /\.css$/,
-                //     use: [{
-                //             loader: MiniCssExtractPlugin.loader,
-
-                //         },
-                //         'css-loader',
-                //     ]
-                // },
-
-            ]
-        },
-
-        plugins: [
-            new WebpackBar(),
-            new HtmlWebpackPlugin({
-                hash: false,
-                title: 'my index page!',
-                myPageHeader: 'Hello INDEX',
-                chunks: ['vendor', 'app'],
-                template: `${PATHS.src}/index.html`,
-                filename: 'index.html'
-            }),
-            new HtmlWebpackPlugin({
-                hash: false,
-                title: 'my test page!',
-                myPageHeader: 'Hello TEST',
-                template: `${PATHS.src}/test.html`,
-                chunks: ['vendor', 'test'],
-                filename: 'test.html' //relative to root of the application
-            }),
-            // new HtmlWebpackPlugin({
-
-
-            // }),
-            new MiniCssExtractPlugin({
-                filename: `${PATHS.assets}css/[name].css`,
-            }),
-            new CleanWebpackPlugin(['./dist/**/*.*']),
-            new webpack.ProvidePlugin({
-                $: 'jquery',
-                jQuery: 'jquery',
-                'window.jQuery': 'jquery'
-            }),
-            new OptimizeCssAssetsPlugin({
-                assetNameRegExp: /\.css$/g,
-                cssProcessor: require('cssnano'),
-                cssProcessorPluginOptions: {
-                    preset: ['default',
-                        {
-                            discardComments: {
-                                removeAll: true
+                    },
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            mozjpeg: {
+                                progressive: true,
+                                quality: 70
+                            },
+                            // optipng.enabled: false will disable optipng
+                            optipng: {
+                                enabled: false,
+                            },
+                            pngquant: {
+                                quality: '65-90',
+                                speed: 4
+                            },
+                            gifsicle: {
+                                interlaced: false,
+                            },
+                            // the webp option will enable WEBP
+                            webp: {
+                                quality: 75
                             }
                         }
-                    ],
-                },
-                canPrint: true
-            }),
-            new CopyWebpackPlugin([
-                // {
-                //       from: `${PATHS.src}/img`,
-                //       to: `${PATHS.assets}img`
-                //   },
-                // {
-                //     from: `${PATHS.src}/fonts`,
-                //     to: `${PATHS.assets}fonts`
-                // },
-                {
-                    from: `${PATHS.src}/static`,
-                    to: ``
-                },
-            ])
+                    },
+                ]
+            },
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                exclude: '/node_modules/',
+                options: {
+
+                }
+            },
+            {
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: `${PATHS.assets}fonts`
+                    }
+                }]
+            },
         ]
-    }
-    // TODO: autoprefixer + babel
+    },
+
+    plugins: [
+        new WebpackBar(),
+        new HtmlWebpackPlugin({
+            hash: false,
+            title: 'my index page!',
+            myPageHeader: 'Hello INDEX',
+            chunks: ['vendor', 'app'],
+            template: `${PATHS.src}/index.html`,
+            filename: 'index.html'
+        }),
+        new HtmlWebpackPlugin({
+            hash: false,
+            title: 'my test page!',
+            myPageHeader: 'Hello TEST',
+            template: `${PATHS.src}/test.html`,
+            chunks: ['vendor', 'test'],
+            filename: 'test.html' //relative to root of the application
+        }),
+        // new HtmlWebpackPlugin({
+
+
+        // }),
+        new MiniCssExtractPlugin({
+            filename: `${PATHS.assets}css/[name].css`,
+        }),
+        new CleanWebpackPlugin(['./dist/**/*.*']),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery'
+        }),
+        new OptimizeCssAssetsPlugin({
+            assetNameRegExp: /\.css$/g,
+            cssProcessor: require('cssnano'),
+            cssProcessorPluginOptions: {
+                preset: ['default',
+                    {
+                        discardComments: {
+                            removeAll: true
+                        }
+                    }
+                ],
+            },
+            canPrint: true
+        }),
+        new CopyWebpackPlugin([
+            // {
+            //       from: `${PATHS.src}/img`,
+            //       to: `${PATHS.assets}img`
+            //   },
+            // {
+            //     from: `${PATHS.src}/fonts`,
+            //     to: `${PATHS.assets}fonts`
+            // },
+            {
+                from: `${PATHS.src}/static`,
+                to: ``
+            },
+        ])
+    ]
+}
