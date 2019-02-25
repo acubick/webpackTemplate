@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "webpack-dev-server --watch   --config ./build/webpack.dev.conf.js",
+        "dev": "webpack-dev-server --watch   --config ./build/webpack.dev.conf.js --mode=development",
         "build": "webpack  --config ./build/webpack.build.conf.js",
         "webpack": "webpack --mode=development",
         "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --mode=development\"",
