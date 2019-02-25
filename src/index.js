@@ -1,8 +1,8 @@
-import './styles.scss';
+// import './styles.scss';
 import './js/common.js';
 import './css/main.css';
-import './scss/main.scss';
-// import './bootstrap/bootstrap';
+import './sass/main.sass';
+import './bootstrap/bootstrap';
 
 $(document).ready(function() {
     $('.row').append('<h3 class="title">Hello jQuery!</h3>');

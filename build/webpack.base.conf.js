@@ -82,13 +82,13 @@ module.exports = {
                     ]
                 },
                 {
-                    test: /\.(gif|png|jpe?g|svg)$/g,
+                    test: /\.(gif|png|jpe?g|svg)$/i,
                     use: [{
                             loader: 'file-loader',
                             options: {
                                 name: '[name].[ext]',
-                                outputPath: './',
-                                useRelativePAth: true
+                                outputPath: `${PATHS.assets}img`,
+                                useRelativePath: true
                             }
                         },
                         {
@@ -96,7 +96,7 @@ module.exports = {
                             options: {
                                 mozjpeg: {
                                     progressive: true,
-                                    quality: 70
+                                    quality: 75
                                 },
                                 // optipng.enabled: false will disable optipng
                                 optipng: {
@@ -124,6 +124,16 @@ module.exports = {
                     options: {
 
                     }
+                },
+                {
+                    test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                    use: [{
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: `${PATHS.assets}fonts`
+                        }
+                    }]
                 },
                 // 	{
                 //     test: /\.css$/,
@@ -163,7 +173,7 @@ module.exports = {
             new MiniCssExtractPlugin({
                 filename: `${PATHS.assets}css/[name].css`,
             }),
-            new CleanWebpackPlugin(['./dist/*.*']),
+            new CleanWebpackPlugin(['./dist/**/*.*']),
             new webpack.ProvidePlugin({
                 $: 'jquery',
                 jQuery: 'jquery',
@@ -183,10 +193,15 @@ module.exports = {
                 },
                 canPrint: true
             }),
-            new CopyWebpackPlugin([{
-                    from: `${PATHS.src}/img`,
-                    to: `${PATHS.assets}img`
-                },
+            new CopyWebpackPlugin([
+                // {
+                //       from: `${PATHS.src}/img`,
+                //       to: `${PATHS.assets}img`
+                //   },
+                // {
+                //     from: `${PATHS.src}/fonts`,
+                //     to: `${PATHS.assets}fonts`
+                // },
                 {
                     from: `${PATHS.src}/static`,
                     to: ``
