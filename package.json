@@ -7,7 +7,10 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "webpack-dev-server --watch   --config ./build/webpack.dev.conf.js",
         "build": "webpack  --config ./build/webpack.build.conf.js",
-        "webpack": "webpack"
+        "webpack": "webpack --mode=development",
+        "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --mode=development\"",
+        "server": "webpack-dev-server --mode=development",
+        "prod": "webpack --mode=production"
     },
     "repository": {
         "type": "git",

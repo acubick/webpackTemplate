@@ -5,7 +5,7 @@ const WebpackBar = require('webpackbar')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+    // const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const PATHS = {
     src: path.join(__dirname, '../src'),
@@ -33,7 +33,12 @@ module.exports = {
                 test: /\.(sa|sc)ss$/,
                 use: [
                     'style-loader',
-                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            sourceMap: true
+                        }
+                    },
                     {
                         loader: 'css-loader',
                         options: {
@@ -167,20 +172,21 @@ module.exports = {
             jQuery: 'jquery',
             'window.jQuery': 'jquery'
         }),
-        new OptimizeCssAssetsPlugin({
-            assetNameRegExp: /\.css$/g,
-            cssProcessor: require('cssnano'),
-            cssProcessorPluginOptions: {
-                preset: ['default',
-                    {
-                        discardComments: {
-                            removeAll: true
-                        }
-                    }
-                ],
-            },
-            canPrint: true
-        }),
+        // DISABLE SOURCEMAPS BUGS!!!
+        // new OptimizeCssAssetsPlugin({
+        //     assetNameRegExp: /\.css$/g,
+        //     cssProcessor: require('cssnano'),
+        //     cssProcessorPluginOptions: {
+        //         preset: ['default',
+        //             {
+        //                 discardComments: {
+        //                     removeAll: true
+        //                 }
+        //             }
+        //         ],
+        //     },
+        //     canPrint: true
+        // }),
         new CopyWebpackPlugin([
             // {
             //       from: `${PATHS.src}/img`,
