@@ -2,7 +2,7 @@
 import './js/common.js';
 // import './css/main.css';
 import './sass/main.sass';
-import './libs/bootstrap/bootstrap';
+// import './libs/bootstrap/bootstrap';
 
 $(document).ready(function() {
     $('.row').append('<h3 class="title">Hello jQuery!</h3>');
