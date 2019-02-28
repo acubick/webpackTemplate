@@ -1,10 +1,10 @@
 @function rem($pixels, $context: $mainFontSize)
   @if unitless($pixels)
     $pixels: $pixels * 1px
-
+  
   @if unitless($context)
     $context: $context * 1px
-
+  
   @return $pixels / $context * 1rem
 
 @mixin size($width,$height: $width)
@@ -14,12 +14,35 @@
 @mixin placeholder
   ::-webkit-input-placeholder
     @content
-
+  
   :-moz-placeholder
-    @content
-
+		@content
+  
   ::-moz-placeholder
     @content
-
+  
   :-ms-input-placeholder
-    @content
+		@content
+	
+@mixin on-event($self: false)
+	@if $self
+		&,
+		&:hover,
+		&:active,
+		&:focus
+			@content
+	
+ @else
+	&:hover,
+	&:active,
+	&:focus
+		@content
+
+
+/// Make a context based selector a little more friendly
+/// @author Hugo Giraudel
+/// @param {String} $context
+@mixin when-inside($context)
+	#{$context} &
+		@content
+

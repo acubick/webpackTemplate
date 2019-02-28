@@ -1,84 +1,22 @@
-@import "vars"
-@import "fonts"
-@import "libs"
-@import "./_modules/header"
+@charset 'UTF-8'
 
-::placeholder
-	color: #666 
+// 1. Configuration and helpers
+@import 'abstracts/variables', 'abstracts/functions', 'abstracts/mixins'
 
-::selection
-	background-color: $accent
-	color: #fff
+// 2. Vendors
+@import 'vendors/normalize', 'vendors/bootstrap'
 
-body
-	font-size: 22px
-	min-width: 320px
-	position: relative
-	line-height: 1.65
-	font-family: $default-font
-	overflow-x: hidden
-	color: $text
-	background-image: url('../img/rain-07.jpg')
-	background-size: cover
-	input, textarea
-		border: #666 1px solid
-		outline: none
-		&:focus:required:invalid
-			border-color: red
-		&:required:valid
-			border-color: green
-	padding-bottom: 100px
+// 3. Base stuff
+@import 'base/base', 'base/fonts', 'base/typography', 'base/helpers'
 
-.img-responsive
-	display: block
-	max-width: 100%
-	height: auto
-	&.img-width
-		width: 100%
+// 4. Layout-related sections
+@import 'layout/header', 'layout/footer', 'layout/wrapper'
 
-.text-center
-	text-align: center
+// 5. Components
+@import 'components/button'
 
-b, strong
-	font-weight: bold
-$wdth: 58px
-.item-godtest
-	height: 125px
-	width: 100%
-	background-color: #404244
-	color: #00b3ee
-	text-align: center
-	line-height: 125px
-	position: relative
-	border-radius: 10em
-	&::after
-		content: ''
-		position: absolute
-		width: $wdth
-		border-bottom: 5px solid #00b3ee
-		bottom: -7px
-		left: 50%
-		margin-left: -50%
-		transition: all .5s ease
-		cursor: pointer
-	&:hover
-		&::after
-			border-color: #008dc2
-.mydiv
-	width: auto
-	height: 748px
-	background-color: #ffff00
-.myImg
-	height: 350px
-	width: auto
-.wrap
-	background-image: url('../img/rain-09.jpg')
-	background-size:  100% auto
-.hhh
-	display: none
-	background-image: url('../img/rain.jpg')
-	background-image: url('../img/raining.jpg')
-	background-image: url('../img/rain-10.jpg')
+// 6. Page-specific styles
+@import 'pages/home'
 
-
-@import "media" // Always at the end
+// 7. Themes
+@import 'themes/default'
