@@ -5,14 +5,14 @@ const WebpackBar = require('webpackbar')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-    // const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+// const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+
 
 const PATHS = {
     src: path.join(__dirname, '../src'),
     dist: path.join(__dirname, '../dist'),
     assets: 'assets/',
 }
-
 module.exports = {
     externals: {
         paths: PATHS
@@ -62,6 +62,7 @@ module.exports = {
                     }
                 ]
             },
+		  
             // {
             //     test: /\.css$/,
             //     use: [
@@ -120,6 +121,20 @@ module.exports = {
                     },
                 ]
             },
+            // {
+            // test: /\.(png|jpg|gif)$/i,
+            // use: [
+            //   {
+            // 	loader: 'url-loader',
+            // 	options: {
+            // 	  name: '[name].[ext]',
+            // 	  outputPath: `${PATHS.assets}image_url`,
+            // 	  useRelativePath: true,
+            // 	  limit: 8192
+            // 	}
+            //   }
+            // ]
+            // },
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
@@ -138,6 +153,7 @@ module.exports = {
                     }
                 }]
             },
+		  
         ]
     },
 
