@@ -1,7 +1,7 @@
 // import './styles.scss';
 import './js/common.js';
 // import './css/main.css';
-import './scss/main.scss';
+import './sass/main.sass';
 import './libs/bootstrap/bootstrap';
 
 // $(document).ready(function() {
