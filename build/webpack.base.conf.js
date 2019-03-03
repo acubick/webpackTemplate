@@ -5,7 +5,10 @@ const WebpackBar = require('webpackbar')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-// const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+    // const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const Comb = require('csscomb')
+const comb = new Comb('zen')
+comb.processPath('dist/assets/css')
 
 
 const PATHS = {
@@ -62,7 +65,7 @@ module.exports = {
                     }
                 ]
             },
-		  
+
             // {
             //     test: /\.css$/,
             //     use: [
@@ -153,7 +156,7 @@ module.exports = {
                     }
                 }]
             },
-		  
+
         ]
     },
 
