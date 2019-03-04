@@ -87,3 +87,9 @@ sass/     <br>
 </p>                         <br>
 
 Note: _There’s no need to include the _ or .scss file extension when importing_
+
+<h4>Create doc</h4>
+<p>command: <br>
+sassdoc src/scss dist/doc
+sassdoc src/scss --verbose --debug
+</p>

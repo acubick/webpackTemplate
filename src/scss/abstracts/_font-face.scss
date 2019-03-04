@@ -1,3 +1,8 @@
+/// Set a font based on its path
+/// @param {String} $font-family - font-family
+/// @param {String} $file-path - file-path
+/// @param {Value} $weight - font-weight
+/// @param {Value} $style - font-style
 @mixin font-face($font-family, $file-path, $weight: normal, $style: normal, $asset-pipeline: false) {
     @font-face {
         font-family: $font-family;
